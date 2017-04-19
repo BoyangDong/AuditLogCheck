@@ -1,27 +1,28 @@
 Server Name,IP,Trader,Software,OS,S/N,DC,Notes,Path 
 ACTANT,,,,,,,,
 BUDO-DC3-ACT-2,10.64.0.5,Ziol,Actant,Windows 2008 R2,445GT52,DC3,,C:\Program Files\Actant\Log
-BUDO-350-ACT-1,10.62.0.4,Mike,Actant,Windows 2008 R2,40CSC42,350,,
+BUDO-350-ACT-1,10.62.0.4,Mike,Actant,Windows 2008 R2,40CSC42,350,,C:\Program Files\Actant\Log
 BUDO-350-ACT-2,10.62.0.5,Eliot ,Actant,Windows 2008 R2,2VGRC42,350,,C:\Program Files\Actant\Log
 BUDO-DC3-ACT-5,10.64.0.138,Treasuries Group,Actant,Windows 2008 R2,6M2L842,DC3,Shut,
-BUDO-DC3-ACT-4,10.64.0.130,Andrew,Actant,Windows 2008 R2,JDM8F42,DC3,,
-BUDO-350-ACT-3,10.62.0.7,Anath,Actant,Windows 2008 R2,JDM7F42,350,,
+BUDO-DC3-ACT-4,10.64.0.130,Andrew,Actant,Windows 2008 R2,JDM8F42,DC3,this server is used by two traders  ,C:\Program Files\Actant\Profiles\AndrewS\Log
+BUDO-DC3-ACT-4,10.64.0.130,,,,,,therefore 2 log file path ,C:\Program Files\Actant\Profiles\AnanthB\Log
+BUDO-350-ACT-3,10.62.0.7,Anath,Actant,Windows 2008 R2,JDM7F42,350,,C:\Program Files\Actant\Profiles\AndrewS\Log
 BUDO-DC3-ACT-6,10.64.0.134,Kurt/Taylor,Actant,Windows 2008 R2,7C0K482,DC3,Shut,
 BUDO-DC3-ACT-7,10.64.0.135,Kurt ,Actant,Windows 2008 R2,D4Z2W52,DC3,Shut,
-BUDO-CH1-ACTANT-2,10.63.0.35,Paidi,Actant,Windows 2008 R2,,CH1,,
+BUDO-CH1-ACTANT-2,10.63.0.35,Paidi,Actant,Windows 2008 R2,,CH1,,C:\Program Files\Actant\Log
 ,,,,,,,,
 PROOP,,,,,,,,
 BUDO-DC3-PO-2,10.64.0.12,Summa,Proop,Windows 2008 R2,VM,DC3,,
 BUDO-CH1-PO-2,10.63.0.36,Budo Risk,Proop,Windows 2008 R2,,CH1,,
 ,,,,,,,,
 TT,,,,,,,,
-BUDO-DC3-TT-1,10.64.0.3,Jay F,TT,Windows 2008 R2,Shared,DC3,,
-BUDO-DC3-TT-2,10.64.0.9,Peter Z. ,TT,Windows 2008 R2,FD5YC42,DC3,,
-BUDO-DC3-TT-3,10.64.0.13,Zhang/Ezra,TT,Windows 2008 R2,1CP6CZ1,DC3,,
-BUDO-DC3-TT-6,10.64.0.137,Kit Group CME Gateway,TT,Windows 2008 R2,8D4M182,DC3,,
-BUDO-CH1-TT-2,10.63.0.37,Kit Group ICE/NFX Gateway,TT,Windows 2008 R2,2MHG082,CH1,,
-BUDO-DC3-TT-7,10.64.0.11,Kit TTUS,TT,Windows 2008 R2,VM,DC3,,
-BUDO-DC3-TT-8,10.64.0.16,KIT CME,TT,Windows 2008 R2,64ZWZV1,DC3,,
+BUDO-DC3-TT-1,10.64.0.3,Jay F,TT,Windows 2008 R2,Shared,DC3,,C:\tt\logfiles
+BUDO-DC3-TT-2,10.64.0.9,Peter Z. ,TT,Windows 2008 R2,FD5YC42,DC3,,C:\tt\logfiles
+BUDO-DC3-TT-3,10.64.0.13,Zhang/Ezra,TT,Windows 2008 R2,1CP6CZ1,DC3,,C:\tt\logfiles
+BUDO-DC3-TT-6,10.64.0.137,Kit Group CME Gateway,TT,Windows 2008 R2,8D4M182,DC3,,C:\tt\logfiles
+BUDO-CH1-TT-2,10.63.0.37,Kit Group ICE/NFX Gateway,TT,Windows 2008 R2,2MHG082,CH1,Error occurs while mounting,
+BUDO-DC3-TT-7,10.64.0.11,Kit TTUS,TT,Windows 2008 R2,VM,DC3,,C:\tt\logfiles
+BUDO-DC3-TT-8,10.64.0.16,KIT CME,TT,Windows 2008 R2,64ZWZV1,DC3,,C:\tt\logfiles
 OptionCity,,,,,,,,
 BUDO-DC3-OC-1,10.64.0.8,Todd/Red Room,OC,Centos,5R9VS52,DC3,,
 BUDO-DC3-OC-2,10.64.0.131,Kiran,OC,Centos,5DZP382,DC3,,
