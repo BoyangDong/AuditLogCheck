@@ -4,8 +4,8 @@ BUDO-DC3-ACT-2,10.64.0.5,Ziol,Actant,Windows 2008 R2,445GT52,DC3,,C:\Program Fil
 BUDO-350-ACT-1,10.62.0.4,Mike,Actant,Windows 2008 R2,40CSC42,350,,C:\Program Files\Actant\Log
 BUDO-350-ACT-2,10.62.0.5,Eliot ,Actant,Windows 2008 R2,2VGRC42,350,,C:\Program Files\Actant\Log
 BUDO-DC3-ACT-5,10.64.0.138,Treasuries Group,Actant,Windows 2008 R2,6M2L842,DC3,Shut,
-BUDO-DC3-ACT-4,10.64.0.130,Andrew,Actant,Windows 2008 R2,JDM8F42,DC3,this server is used by two traders  ,C:\Program Files\Actant\Profiles\AndrewS\Log
-BUDO-DC3-ACT-4,10.64.0.130,,,,,,therefore 2 log file path ,C:\Program Files\Actant\Profiles\AnanthB\Log
+BUDO-DC3-ACT-4,10.64.0.130,AndrewS,Actant,Windows 2008 R2,JDM8F42,DC3,this server is used by two traders, C:\Program Files\Actant\Profiles\AndrewS\Log
+BUDO-DC3-ACT-4,10.64.0.130,AnanthB,Actant,Windows 2008 R2,JDM8F42,DC3,therefore 2 log file path, C:\Program Files\Actant\Profiles\AnanthB\Log
 BUDO-350-ACT-3,10.62.0.7,Anath,Actant,Windows 2008 R2,JDM7F42,350,,C:\Program Files\Actant\Profiles\AndrewS\Log
 BUDO-DC3-ACT-6,10.64.0.134,Kurt/Taylor,Actant,Windows 2008 R2,7C0K482,DC3,Shut,
 BUDO-DC3-ACT-7,10.64.0.135,Kurt ,Actant,Windows 2008 R2,D4Z2W52,DC3,Shut,
