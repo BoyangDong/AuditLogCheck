@@ -2,7 +2,7 @@ import pysftp as sftp
 import paramiko 
 import os
 import datetime 
-
+import time
 
 #Another pair of credentials 
 #password = "Wonderwall$AtlantisSlumberAdvisory"
@@ -10,11 +10,31 @@ import datetime
 password = 'q&4r)1bx*Y'
 username = 'BudoAudit'
 
+now = time.time()
 
-#path_to_file = 'E:\\Repos\\Project_1\\README.md'
+#Two paths below are for locally testing 
 path_to_file = 'E:\\Repos\\Project_1\\hello_world.txt'
 outgoing_path = '\\test_weekly_audit_logs\\hello_world.txt'
 
+def check_logs(path_to_folder, topdown=False):
+	print "checking sequentially..."
+	counter = 0
+	for root, dirs, files in os.walk(path_to_folder):
+		for all_files in files:
+			full_path = os.path.join(root, all_files)
+			date_file = os.path.getmtime(full_path)
+			if all_files.endswith(".log") or all_files.endswith(".txt"):
+				# Check the recent five days, starting from Sunday 8pm to Friday 8pm 
+				if now - date_file <= 432000:					
+					if os.path.getsize(full_path) == long(0):
+						counter = counter + 1
+						print all_files
+			'''
+			if int(os.stat(full_path).st_size()) == 0:
+				counter = counter + 1
+				print counter
+			'''
+	print counter 
 
 def upload_files():
 	try:
@@ -30,7 +50,6 @@ def upload_files():
 	except Exception, e:
 		print str(e)
 
-
 def get_file_creation_time(file_path):
     t = os.path.getmtime(file_path)
     return datetime.datetime.fromtimestamp(t).strftime("%Y-%m-%d %H:%M:%S") # strftime can disregard the millisecond
@@ -38,5 +57,14 @@ def get_file_creation_time(file_path):
 
 if __name__ == "__main__":
 	#send_email()
-	#print get_file_creation_time(path_to_file)
-	upload_files()
+	'''
+	print get_file_creation_time(path_to_file)
+	print os.stat(path_to_file).st_size
+	print "---"
+	print get_file_creation_time("Z:\\\\Program Files\\Actant\\Log\\ActantRmt_20170508.log")
+	'''
+	print "---"
+	#upload_files()
+	check_logs("Z:\\\\Program Files\\Actant\\Log")
+
+	#10.64.0.5
