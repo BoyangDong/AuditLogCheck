@@ -39,8 +39,9 @@ def check_logs(path_to_folder, server_name, topdown=False):
 						#Zip the non-empty files and uploaded under FTP 
 						myZipFile.write(full_path, ''.join(["\\", all_files]), zipfile.ZIP_DEFLATED)						
 	print "# of empty log files within 5 days: %s" % counter 
+	myZipFile.close()
 	upload_files(zipped_folder_name)
-
+	
 
 def upload_files(zipped_folder):
 	'''Upload the zipped log files through sftp to edfman
@@ -61,6 +62,9 @@ def upload_files(zipped_folder):
 		print "Folder hase been uploaded!"
 	except Exception, e:
 		print str(e)
+	finally: 
+		trans.close() 
+		os.remove(zipped_folder)
 
 
 def get_file_creation_time(file_path):
