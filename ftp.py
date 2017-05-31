@@ -12,29 +12,28 @@ username = 'BudoAudit'
 
 now = time.time()
 
-#Two paths below are for locally testing 
+#Two paths below are for local test 
 path_to_file = 'E:\\Repos\\Project_1\\hello_world.txt'
 outgoing_path = '\\test_weekly_audit_logs\\hello_world.txt'
 
 def check_logs(path_to_folder, topdown=False):
 	print "checking sequentially..."
 	counter = 0
-	for root, dirs, files in os.walk(path_to_folder):
-		for all_files in files:
-			full_path = os.path.join(root, all_files)
+	for r, d, f in os.walk(path_to_folder):
+		for all_files in f:
+			full_path = os.path.join(r, all_files)
 			date_file = os.path.getmtime(full_path)
 			if all_files.endswith(".log") or all_files.endswith(".txt"):
 				# Check the recent five days, starting from Sunday 8pm to Friday 8pm 
 				if now - date_file <= 432000:					
 					if os.path.getsize(full_path) == long(0):
 						counter = counter + 1
-						print all_files
-			'''
-			if int(os.stat(full_path).st_size()) == 0:
-				counter = counter + 1
-				print counter
-			'''
-	print counter 
+						os.remove(full_path)
+						print "%s is  empty and removed.." % all_files
+					else:
+						#Zip the non-empty files and uploaded under FTP 
+						continue 
+	print "# of empty log files within 5 days: %i" % counter 
 
 def upload_files():
 	try:
