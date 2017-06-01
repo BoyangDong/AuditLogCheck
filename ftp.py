@@ -52,9 +52,9 @@ def check_logs(obj, topdown=False):
 		for log in f:
 			full_path = os.path.join(r, log)
 			date_file = os.path.getmtime(full_path)
-			if log.endswith(".log") or log.endswith(".txt"):
+			if log.endswith(".log") or log.endswith(".txt"): 
 				# Check the recent five days, starting from Sunday 8pm to Friday 8pm 
-				if now - date_file <= 14400: # !!!!14400 for a cheap test for 48 hours, change back to 43200 for weekly-check					
+				if now - date_file <= 3600: # !!!!14400 for a cheap test for 48 hours, change back to 43200 for weekly-check					
 					n = n + 1
 					if os.path.getsize(full_path) == long(0):
 						m = m + 1
@@ -63,8 +63,11 @@ def check_logs(obj, topdown=False):
 						print "%s is  empty and removed.." % log
 					else:
 						#Zip the non-empty files and uploaded under FTP 
-						#myZipFile.write(full_path, ''.join(["\\", log]), zipfile.ZIP_DEFLATED)
-						myZipFile.write('E:\\Repos\\Project_1\\test_logs\\ActantRmt_20170428.log', ''.join(["\\", log]), zipfile.ZIP_DEFLATED)
+						file_name = full_path.split('\\')[-1]
+						myZipFile.write(full_path, file_name, zipfile.ZIP_DEFLATED)
+						#myZipFile.write('E:\\Repos\\Project_1\\test_logs\\ActantRmt_20170428.log', ''.join(["\\", log]), zipfile.ZIP_DEFLATED)
+						print full_path
+						#Z:\\Program Files\\Actant\\Log\CMEQuoteOrder-FIXLog-MXA3NSN-20170601-091207.txt 10.64.0.5
 												
 	print "Empty Logs: %s" % m 
 	print "Total Logs: %s" % n
@@ -78,7 +81,7 @@ def upload_files(zipped_folder):
 	'''
 	current_dir = os.path.dirname(os.path.realpath(__file__))
 	path_to_zipped_folder = ''.join([current_dir, '\\', zipped_folder])
-	path_out = ''.join(['\\weekly_test\\', zipped_folder])
+	path_out = ''.join(['\\weekly_test\\', current_date, '\\', zipped_folder])
 	try:
 		print "connection establishing..."
 		ssh = paramiko.SSHClient()
