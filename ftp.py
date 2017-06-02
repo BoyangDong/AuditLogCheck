@@ -19,7 +19,7 @@ password = 'q&4r)1bx*Y'
 username = 'BudoAudit'
 
 now = time.time() #current time in milliseconds
-current_date = strftime("%m-%d-%Y", gmtime())
+current_date = strftime('%Y%m%d', gmtime())
 
 servers = []
 server_id = 0
