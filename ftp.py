@@ -6,11 +6,15 @@ import time
 import datetime 
 import zipfile
 import csv 
+import smtplib
 
 from time import gmtime, strftime
 from os.path import isfile, join 
 from server import server 
 from VictoryUtil import MountDrive 
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+
 
 #Another pair of credentials 
 #password = "Wonderwall$AtlantisSlumberAdvisory"
@@ -21,8 +25,10 @@ username = 'BudoAudit'
 now = time.time() #current time in milliseconds
 current_date = strftime('%Y%m%d', gmtime())
 
+email_toks = []
 servers = []
 server_id = 0
+servers_with_empty_logs = {}
 
 
 #def check_logs(path_to_folder, server_name, topdown=False):
@@ -54,12 +60,17 @@ def check_logs(obj, topdown=False):
 			date_file = os.path.getmtime(full_path)
 			if log.endswith(".log") or log.endswith(".txt"): 
 				# Check the recent five days, starting from Sunday 8pm to Friday 8pm 
-				if now - date_file <= 3600: # !!!!14400 for a cheap test for 48 hours, change back to 43200 for weekly-check					
+				if now - date_file <= 7200: # !!!!14400 for a cheap test for 48 hours, change back to 43200 for weekly-check					
 					n = n + 1
 					if os.path.getsize(full_path) == long(0):
 						m = m + 1
 						#os.remove(full_path)   #!!!!!! remove the "remove" function just for now 
 						record_in_db(obj, log, full_path)
+						key = ''.join([obj.server_name," ",obj.ip])
+						if key in servers_with_empty_logs:
+							servers_with_empty_logs[key] += 1
+						else:
+							servers_with_empty_logs[key] = 1
 						print "%s is  empty and removed.." % log
 					else:
 						#Zip the non-empty files and uploaded under FTP 
@@ -134,6 +145,19 @@ def get_server_objects(spreadsheet):
 		 		s = server(row[0], row[1], row[2], row[3], row[4], server_id, False, row[8])
 		 		servers.append(s)
 
+
+def send_email(content):
+	print "Setting up email server..."
+	mail = smtplib.SMTP('smtp.gmail.com', 587)
+	mail.ehlo()
+	mail.starttls()
+	mail.login('test.budo@gmail.com', 'test.budo1234')
+	mail.sendmail('test.budo@gmail.com', 'boyang.dong@budoholdings.com', content)
+	mail.sendmail('test.budo@gmail.com', 'Becky.Ali@budoholdings.com', content)
+	print "Email Sent!"
+	mail.close()
+
+
 '''
 if __name__ == "__main__":
 	#main function for module test 
@@ -146,3 +170,7 @@ if __name__ == "__main__":
 	for server in servers: check_logs(server)
 	#check_logs(servers[0])
 	#print servers[2].ip
+	for k, v in servers_with_empty_logs.iteritems():    
+		email_toks.extend(["Empty audit log exists:", k, " \t" , '# OF EMPTY LOG FILES:', str(v),' \n']) 
+	send_email(''.join(email_toks))
+
