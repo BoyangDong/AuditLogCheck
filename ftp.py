@@ -60,7 +60,7 @@ def check_logs(obj, topdown=False):
 			date_file = os.path.getmtime(full_path)
 			if log.endswith(".log") or log.endswith(".txt"): 
 				# Check the recent five days, starting from Sunday 8pm to Friday 8pm 
-				if now - date_file <= 7200: # !!!!14400 for a cheap test for 48 hours, change back to 43200 for weekly-check					
+				if now - date_file <= 86400: # !!!!86400 for a cheap test for 24 hours, change back to 86400*5 for weekly-check					
 					n = n + 1
 					if os.path.getsize(full_path) == long(0):
 						m = m + 1
