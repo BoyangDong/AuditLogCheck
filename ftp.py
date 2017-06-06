@@ -170,7 +170,10 @@ if __name__ == "__main__":
 	for server in servers: check_logs(server)
 	#check_logs(servers[0])
 	#print servers[2].ip
-	for k, v in servers_with_empty_logs.iteritems():    
-		email_toks.extend(["Empty audit log exists:", k, " \t" , '# OF EMPTY LOG FILES:', str(v),' \n']) 
-	send_email(''.join(email_toks))
+	if len(servers_with_empty_logs) == 0:
+		send_email("No empty log files is found from the windows servers during this period.")
+	else: 
+		for k, v in servers_with_empty_logs.iteritems():    
+			email_toks.extend(["Empty audit log exists:", k, " \t" , '# OF EMPTY LOG FILES:', str(v),' \n']) 
+		send_email(''.join(email_toks))
 
