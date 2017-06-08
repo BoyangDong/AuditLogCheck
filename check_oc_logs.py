@@ -19,9 +19,15 @@ transport.connect(username=username, pkey=key)
 # Go!
 sftp = paramiko.SFTPClient.from_transport(transport)
 
+file_path = '\\instance1\\audit_logs\\Budo-JerryAttlan_AuditTrail_20170529.zip'
+local_path = 'E:\\Repos\\Project_1\\test_logs\\OptionsCity\\Log1.zip'
+sftp.get(r'/instance1/audit_logs/Budo-JerryAttlan_AuditTrail_20170529.zip', local_path)
+
 # Close
 sftp.close()
 transport.close()
 
 # Reference Page 
 # https://stackoverflow.com/questions/3635131/paramikos-sshclient-with-sftp
+
+#sftp://sftpbudo@64.74.102.118:4242/instance1/audit_logs/Budo-JerryAttlan_AuditTrail_20170529.zip
