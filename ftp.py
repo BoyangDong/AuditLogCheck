@@ -171,9 +171,9 @@ if __name__ == "__main__":
 	#check_logs(servers[0])
 	#print servers[2].ip
 	if len(servers_with_empty_logs) == 0:
-		send_email("No empty log files is found from the windows servers on %s." % current_date)
+		send_email("No empty log files is found from the servers on %s." % current_date)
 	else: 
-		date_today = strftime('%d-%m-%Y', gmtime())
+		date_today = strftime('%m-%d-%Y', gmtime())
 		email_toks.extend(["Audit Log Checker Report: ",date_today, "\n"])
 		for k, v in servers_with_empty_logs.iteritems():    
 			email_toks.extend(["Empty audit log exists: ", k, " \t" , '# OF EMPTY LOG FILES:', str(v),' \n']) 
