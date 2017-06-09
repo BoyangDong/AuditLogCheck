@@ -19,9 +19,13 @@ transport.connect(username=username, pkey=key)
 # Go!
 sftp = paramiko.SFTPClient.from_transport(transport)
 
-file_path = '\\instance1\\audit_logs\\Budo-JerryAttlan_AuditTrail_20170529.zip'
-local_path = 'E:\\Repos\\Project_1\\test_logs\\OptionsCity\\Log1.zip'
-sftp.get(r'/instance1/audit_logs/Budo-JerryAttlan_AuditTrail_20170529.zip', local_path)
+file_path_root = 'instance1/audit_logs/'
+local_path_root = 'e:/Repos/Project_1/test_logs/OptionsCity/'
+
+file_path = ''.join([file_path_root, 'Budo-JerryAttlan_AuditTrail_20170529.zip'])#\\instance1\\audit_logs\\Budo-JerryAttlan_AuditTrail_20170529.zip'
+local_path = ''.join([local_path_root, 'newzip.zip'])
+#local_path = 'E:\\Repos\\Project_1\\test_logs\\OptionsCity\\Log1.zip'
+sftp.get(r'%s' % file_path, r'%s' % local_path)
 
 # Close
 sftp.close()
