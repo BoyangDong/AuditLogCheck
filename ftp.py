@@ -108,7 +108,7 @@ def upload_files(zipped_folder):
 		print str(e)
 	finally: 
 		trans.close() 
-		os.remove(zipped_folder)
+		#os.remove(zipped_folder) !!!!!!!
 		
 
 def record_in_db(obj, log_name, file_path):
@@ -170,12 +170,11 @@ if __name__ == "__main__":
 	for server in servers: check_logs(server)
 	#check_logs(servers[0])
 	#print servers[2].ip
+	date_today = strftime('%m-%d-%Y', gmtime())
 	if len(servers_with_empty_logs) == 0:
-		send_email("No empty log files is found from the servers on %s." % current_date)
-	else: 
-		date_today = strftime('%m-%d-%Y', gmtime())
+		send_email("No empty log files is found from the servers on %s." % date_today)
+	else: 		
 		email_toks.extend(["Audit Log Checker Report: ",date_today, "\n"])
 		for k, v in servers_with_empty_logs.iteritems():    
 			email_toks.extend(["Empty audit log exists: ", k, " \t" , '# OF EMPTY LOG FILES:', str(v),' \n']) 
 		send_email(''.join(email_toks))
-
