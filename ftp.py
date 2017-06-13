@@ -22,7 +22,7 @@ from email.mime.text import MIMEText
 password = 'q&4r)1bx*Y'
 username = 'BudoAudit'
 
-now = time.time() #current time in milliseconds
+now = time.time() #current time in second
 current_date = strftime('%Y%m%d', gmtime())
 
 email_toks = []
@@ -60,11 +60,11 @@ def check_logs(obj, topdown=False):
 			date_file = os.path.getmtime(full_path)
 			if log.endswith(".log") or log.endswith(".txt"): 
 				# Check the recent five days, starting from Sunday 8pm to Friday 8pm 
-				if now - date_file <= 86400: # !!!!86400 for a cheap test for 24 hours, change back to 86400*5 for weekly-check					
+				if now - date_file <= 432000: #86400*5 for weekly-check					
 					n = n + 1
 					if os.path.getsize(full_path) == long(0):
 						m = m + 1
-						#os.remove(full_path)   #!!!!!! remove the "remove" function just for now 
+						#os.remove(full_path)   #!!!!!! if the user wants to keep the empty log files, comment this line out
 						record_in_db(obj, log, full_path)
 						key = ''.join([obj.server_name," ",obj.ip])
 						if key in servers_with_empty_logs:
@@ -108,7 +108,7 @@ def upload_files(zipped_folder):
 		print str(e)
 	finally: 
 		trans.close() 
-		#os.remove(zipped_folder) !!!!!!!
+		os.remove(zipped_folder) #!!!!!!!Remove the zipped folder once the logs are uploaded
 		
 
 def record_in_db(obj, log_name, file_path):
@@ -154,6 +154,7 @@ def send_email(content):
 	mail.login('test.budo@gmail.com', 'test.budo1234')
 	mail.sendmail('test.budo@gmail.com', 'boyang.dong@budoholdings.com', content)
 	mail.sendmail('test.budo@gmail.com', 'Becky.Ali@budoholdings.com', content)
+	#mail.sendmail('test.budo@gmail.com', 'mark.cukier@budoholdings.com', content)
 	print "Email Sent!"
 	mail.close()
 
