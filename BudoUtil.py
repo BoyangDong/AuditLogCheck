@@ -1,5 +1,6 @@
 import MySQLdb
 import smtplib
+import paramiko
 
 from server import server 
 from email.mime.multipart import MIMEMultipart
@@ -31,7 +32,6 @@ class record_in_db:
 		cur = db.cursor()
 		try:
 			cur.execute("""INSERT INTO error_log_info VALUES (%s,%s,%s,%s,%s)""",(server_name, server_ip, log_name, time_stamp,"EMPTY FILE")) #time stamp format: '2017-04-21 13:59:45'
-													 			                 #server,          ip,     file_name,time_stamp,                       error_type
 			db.commit()
 		except Exception, e:
 			db.rollback()
@@ -39,3 +39,26 @@ class record_in_db:
 		finally: 
 			if db: 
 				db.close()
+
+
+class upload_to_EDFMan:
+	def __init__(self, path_in, path_out, current_date, zipped_folder, username='BudoAudit', password='q&4r)1bx*Y'):
+		'''Upload the zipped log files through sftp to edfman
+		'''
+		path_out = ''.join(['\\weekly_test\\', current_date, '\\', zipped_folder])
+		try:
+			print "connection establishing..."
+			ssh = paramiko.SSHClient()
+			ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+			trans = paramiko.Transport(("ftpc.edfmancapital.com", 2222))
+			trans.connect(username = username, password = password)
+			sftp = paramiko.SFTPClient.from_transport(trans)
+			print "connected!"
+			#sftp.put(path_to_file, outgoing_path)
+			sftp.put(zipped_folder, path_out)
+			print "Folder hase been uploaded!"
+		except Exception, e:
+			print str(e)
+		finally: 
+			trans.close() 
+			
