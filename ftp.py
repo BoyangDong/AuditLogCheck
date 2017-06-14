@@ -60,12 +60,13 @@ def check_logs(obj, topdown=False):
 			date_file = os.path.getmtime(full_path)
 			if log.endswith(".log") or log.endswith(".txt"): 
 				# Check the recent five days, starting from Sunday 8pm to Friday 8pm 
-				if now - date_file <= 432000: #86400*5 for weekly-check					
+				if now - date_file <= 86400: #86400*5=432000 for weekly-check					
 					n = n + 1
 					if os.path.getsize(full_path) == long(0):
 						m = m + 1
 						#os.remove(full_path)   #!!!!!! if the user wants to keep the empty log files, comment this line out
-						record_in_db(obj, log, full_path)
+						folder_ts = datetime.datetime.fromtimestamp(date_file).strftime('%Y-%m-%d %H:%M:%S')
+						record_in_db(obj, log, full_path, folder_ts=folder_ts)
 						key = ''.join([obj.server_name," ",obj.ip])
 						if key in servers_with_empty_logs:
 							servers_with_empty_logs[key] += 1
@@ -111,13 +112,13 @@ def upload_files(zipped_folder):
 		os.remove(zipped_folder) #!!!!!!!Remove the zipped folder once the logs are uploaded
 		
 
-def record_in_db(obj, log_name, file_path):
+def record_in_db(obj, log_name, file_path, folder_ts):
 	db = MySQLdb.connect(host="localhost", user="bdong", passwd="bdong", db="log_report")
 	cur = db.cursor()
 	try:
-		cur.execute("""INSERT INTO error_log_info VALUES (%s,%s,%s,%s,%s)""",(obj.server_name, obj.ip, log_name, get_file_creation_time(file_path),"EMPTY FILE")) #time stamp format: '2017-04-21 13:59:45'
-												 			                 #server,          ip,     file_name,time_stamp,                       error_type
-		print get_file_creation_time(file_path)
+		cur.execute("""INSERT INTO error_log_info VALUES (%s,%s,%s,%s,%s)""",(obj.server_name, obj.ip, log_name, folder_ts,"EMPTY FILE")) #time stamp format: '2017-04-21 13:59:45'
+												 			                 #server,          ip,     file_name,time_stamp,error_type
+		'''print get_file_creation_time(file_path)'''#!!!
 		db.commit()
 	except Exception, e:
 		db.rollback()
@@ -125,12 +126,12 @@ def record_in_db(obj, log_name, file_path):
 	finally: 
 		if db: db.close()
 
-
+'''
 def get_file_creation_time(file_path):
 	#This function is currently unused, it provides a formatted time stamp format given a absolute path of the file
     t = os.path.getmtime(file_path)
     return datetime.datetime.fromtimestamp(t).strftime("%Y-%m-%d %H:%M:%S") # strftime can disregard the millisecond
-
+'''
 
 def get_server_objects(spreadsheet):
 	with open (spreadsheet, "r") as f:
@@ -153,7 +154,7 @@ def send_email(content):
 	mail.starttls()
 	mail.login('test.budo@gmail.com', 'test.budo1234')
 	mail.sendmail('test.budo@gmail.com', 'boyang.dong@budoholdings.com', content)
-	mail.sendmail('test.budo@gmail.com', 'Becky.Ali@budoholdings.com', content)
+	#mail.sendmail('test.budo@gmail.com', 'Becky.Ali@budoholdings.com', content)
 	#mail.sendmail('test.budo@gmail.com', 'mark.cukier@budoholdings.com', content)
 	print "Email Sent!"
 	mail.close()
