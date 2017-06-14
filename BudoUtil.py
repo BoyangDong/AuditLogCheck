@@ -42,10 +42,10 @@ class record_in_db:
 
 
 class upload_to_EDFMan:
-	def __init__(self, path_in, path_out, current_date, zipped_folder, username='BudoAudit', password='q&4r)1bx*Y'):
+	def __init__(self, folder_uploaded, path_out, username='BudoAudit', password='q&4r)1bx*Y'):
 		'''Upload the zipped log files through sftp to edfman
 		'''
-		path_out = ''.join(['\\weekly_test\\', current_date, '\\', zipped_folder])
+		#path_out = ''.join(['\\weekly_test\\', current_date, '\\', zipped_folder])
 		try:
 			print "connection establishing..."
 			ssh = paramiko.SSHClient()
@@ -55,7 +55,7 @@ class upload_to_EDFMan:
 			sftp = paramiko.SFTPClient.from_transport(trans)
 			print "connected!"
 			#sftp.put(path_to_file, outgoing_path)
-			sftp.put(zipped_folder, path_out)
+			sftp.put(folder_uploaded, path_out)
 			print "Folder hase been uploaded!"
 		except Exception, e:
 			print str(e)
