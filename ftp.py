@@ -41,7 +41,7 @@ def check_logs(obj, topdown=False):
 	newdrive = MountDrive("\\\\"+obj.ip+"\\C$", 'vadmin12', '131wang', 'victory')
 	# Create the zipped folder 
 	zipped_folder_name = ''.join(['_'.join([obj.server_name, current_date]), '.zip'])
-	myZipFile = zipfile.ZipFile(zipped_folder_name, "w")
+	myZipFile = zipfile.ZipFile(zipped_folder_name, mode='w', allowZip64=True) # Allow to zip a folder which size is greater than 4gb 
 	# Construct the absolute log path based on the spreadsheet info  
 	s = obj.log_path 
 	toks = s.split("\\")
@@ -60,7 +60,7 @@ def check_logs(obj, topdown=False):
 			date_file = os.path.getmtime(full_path)
 			if log.endswith(".log") or log.endswith(".txt"): 
 				# Check the recent five days, starting from Sunday 8pm to Friday 8pm 
-				if now - date_file <= 86400: #86400*5=432000 for weekly-check					
+				if now - date_file <= 432000: #86400*5=432000 for weekly-check					
 					n = n + 1
 					if os.path.getsize(full_path) == long(0):
 						m = m + 1
@@ -154,7 +154,7 @@ def send_email(content):
 	mail.starttls()
 	mail.login('test.budo@gmail.com', 'test.budo1234')
 	mail.sendmail('test.budo@gmail.com', 'boyang.dong@budoholdings.com', content)
-	#mail.sendmail('test.budo@gmail.com', 'Becky.Ali@budoholdings.com', content)
+	mail.sendmail('test.budo@gmail.com', 'Becky.Ali@budoholdings.com', content)
 	#mail.sendmail('test.budo@gmail.com', 'mark.cukier@budoholdings.com', content)
 	print "Email Sent!"
 	mail.close()
@@ -174,9 +174,9 @@ if __name__ == "__main__":
 	#print servers[2].ip
 	date_today = strftime('%m-%d-%Y', gmtime())
 	if len(servers_with_empty_logs) == 0:
-		send_email("No empty log files is found from the servers on %s." % date_today)
+		send_email("No empty log file is found from the servers on week %s." % date_today)
 	else: 		
-		email_toks.extend(["Audit Log Checker Report: ",date_today, "\n"])
+		email_toks.extend(["Audit Log Checker Report: Week ",date_today, "\n"])
 		for k, v in servers_with_empty_logs.iteritems():    
 			email_toks.extend(["Empty audit log exists: ", k, " \t" , '# OF EMPTY LOG FILES:', str(v),' \n']) 
 		send_email(''.join(email_toks))
