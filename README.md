@@ -1,8 +1,8 @@
-# Check Audit Log
+# Audit Log Checker 
 ##Requirement
-Validate the audit logs from actants and traders’ servers weekly before sending them to the clearing firm. Invalid (empty) log files are recorded and removed. 
+- Validate the audit logs from actants and traders’ servers weekly before sending them to the clearing firm. Invalid (empty) log files are recorded and removed. 
 ##Solution
-Windows server
+- Windows server
 Drives are mounted under the dev machine. The script can check and do the work sequentially based on the directory that log files resides listed in the csv file. 
-Linux server
+- Linux server
 Audit logs are uploaded under the sftp server on daily basis. That is where audit logs reside. Once it passes the validation (not empty), it will be pushed to the clearing firm. 
