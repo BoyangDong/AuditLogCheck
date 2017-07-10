@@ -12,6 +12,6 @@
 ####Audit logs are uploaded under the sftp server on daily basis. That is where audit logs reside. Once it passes the validation (not empty), it will be pushed to the clearing firm. ####
 
 ### Who do I talk to? ###
-#### Boyang Dong ####
-#### boyang.dong@budoholdings.com ####
-#### (312)854-2929 (work) ####
+* Boyang Dong
+* boyang.dong@budoholdings.com
+* (312)854-2929 (work)
