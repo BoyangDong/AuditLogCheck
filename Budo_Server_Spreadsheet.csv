@@ -1,6 +1,6 @@
 Server Name,IP,Trader,Software,OS,S/N,DC,Notes,Path 
 ACTANT,,,,,,,,
-BUDO-DC3-ACT-2,10.64.0.5,Ziol,Actant,Windows 2008 R2,445GT52,DC3,,C:\Program Files\Actant\Log
+BUDO-DC3-ACT-2,10.133.32.70,Ziol,Actant,Windows 2008 R2,445GT52,DC3,,C:\Program Files\Actant\Log
 BUDO-350-ACT-1,10.62.0.4,Mike,Actant,Windows 2008 R2,40CSC42,350,,C:\Program Files\Actant\Log
 BUDO-350-ACT-2,10.62.0.5,Eliot ,Actant,Windows 2008 R2,2VGRC42,350,,C:\Program Files\Actant\Log
 BUDO-DC3-ACT-5,10.64.0.138,Treasuries Group,Actant,Windows 2008 R2,6M2L842,DC3,Shut,
@@ -24,15 +24,15 @@ BUDO-CH1-TT-2,10.63.0.37,Kit Group ICE/NFX Gateway,TT,Windows 2008 R2,2MHG082,CH
 BUDO-DC3-TT-7,10.64.0.11,Kit TTUS,TT,Windows 2008 R2,VM,DC3,,C:\tt\logfiles
 BUDO-DC3-TT-8,10.64.0.16,KIT CME,TT,Windows 2008 R2,64ZWZV1,DC3,,C:\tt\logfiles
 OptionCity,,,,,,,,
-BUDO-DC3-OC-1,10.64.0.8,Todd/Red Room,OC,Centos,5R9VS52,DC3,,
-BUDO-DC3-OC-2,10.64.0.131,Kiran,OC,Centos,5DZP382,DC3,,
-BUDO-DC3-OC-4,10.64.0.139,Treasuries Group,OC,Centos,513H842,DC3,,
-BUDO-DC3-OC-5,10.64.0.2,Michael Handwerker,OC,Centos,CVSBR22,DC3,,
+BUDO-DC3-OC-1,10.133.32.75,Todd/Red Room,OC,Centos,5R9VS52,DC3,,
+BUDO-DC3-OC-2,10.133.32.76,Kiran,OC,Centos,5DZP382,DC3,,
+BUDO-DC3-OC-4,10.133.32.77,Treasuries Group,OC,Centos,513H842,DC3,,
+BUDO-DC3-OC-5,10.133.32.78,Michael Handwerker,OC,Centos,CVSBR22,DC3,,
 ,,,,,,,,
 Rival,,,,,,,,
-BUDO-DC3-RIVAL-1,10.64.0.14,Rod,Rival,Centos,D62W082,DC3,,
-BUDO-DC3-RIVAL-2,10.64.0.140,Anthony ,Rival,Centos,2LX7X52,DC3,,
-BUDO-350-RIVAL-1,10.62.0.9,,Rival,Centos,94NN282,350,,
+BUDO-DC3-RIVAL-1,10.133.64.71,Rod Valeroso,Rival,Centos,D62W082,DC3,,
+BUDO-DC3-RIVAL-2,10.133.64.72,Duncan Robibnson ,Rival,Centos,2LX7X52,DC3,,
+,,,,,,,,
 ,,,,,,,,
 VM,,,,,,,,
 BUDO-DC3-VM-1,10.64.0.10,BUDO,,Windows 2012,JFP3V52,DC3,,
@@ -43,9 +43,10 @@ BUDO-DC3-DEV-1,10.64.0.133,RiskBone,,Centos,,DC3,,
 BUDO-350-DEV-1,10.62.128.2,Mike,,Windows 2008 R2,VM,350,,
 BUDO-350-DEV-2,10.62.128.3,Eliot ,,Windows 2008 R2,VM,350,,
 BUDO-DC3-DEV-2,10.64.0.17,Paidi,,Windows 2008 R2,VM,DC3,,
+BUDO-350-DEV-1,10.62.0.9,Ted Hilk ,Rival,Centos,94NN282,350,,
 ,,,,,,,,
 T-Bricks,,,,,,,,
-BUDO-DC3-TBRICKS-1,10.64.0.136,Treasuries Jeff,Tbricks,Centos,D4Z1W52,DC3,,
+BUDO-DC3-TBRICKS-1,10.133.32.74,Treasuries Jeff,Tbricks,Centos,D4Z1W52,DC3,,
 ,,,,,,,,
 JEFF,,,,,,,,
-BUDO-DC3-JEFF-1,10.64.0.15,Jeff W,,Red Hat,1K0TQD2,DC3,,
+BUDO-DC3-JEFF-1,10.133.32.41,Jeff Wehnes,,Red Hat,1K0TQD2,DC3,,
