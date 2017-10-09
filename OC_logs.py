@@ -23,6 +23,13 @@ local_path_root = r'%s' %'e:/Repos/Project_1/test_logs/OptionsCity/'
 edfman_path_dir = r'%s' % (''.join(['/weekly_test/', current_date, '/']))
 
 servers_info = {
+# ---- New Server IP Address ---- 
+#	"BudoTrading"			: ['10.133.32.75', 'BUDO-DC3-OC-1', 'Todd Moore, Niel Hunt'	],
+#	"Budo-JerryAttlan"		: ['10.133.32.76', 'BUDO-DC3-OC-2', 'Jerry Attlan'			],
+#	"Budo-LennyZaban"		: ['10.133.32.77', 'BUDO-DC3-OC-4', 'Jeff**, Lenny, Erin'	],
+#	"Budo-LennyZabanQuoter"	: ['10.133.32.77', 'BUDO-DC3-OC-4', 'Jeff, Lenny(Quoter)'	],
+#	"Budo-MichaelHandwerker": ['10.133.32.78', 'BUDO-DC3-OC-5', 'Michael Handwerker'	]
+# ---- Old Server IP Address ---- 
 	"BudoTrading"			: ['10.64.0.8'	, 'BUDO-DC3-OC-1', 'Todd Jones, Niel Hunt'	],
 	"BudoTrading-Kiran"		: ['10.64.0.131', 'BUDO-DC3-OC-2', 'Kiran Khambhampati'		],
 	"Budo-JerryAttlan"		: ['10.64.0.131', 'BUDO-DC3-OC-2', 'Jerry Attlan'			],
@@ -57,7 +64,7 @@ for i in range(len(folders)):
 	folder_path = folders[i]  #folder_path = Budo-JerryAttlan_AuditTrail_20170523.zip
 	folder_stat = sftp.stat(folder_path)
 	folder_creation_time = folder_stat.st_mtime
-	if now - folder_creation_time <= 86400: #!!!! cheap test for now, 24 hours 
+	if now - folder_creation_time <= 432000: #!!!! cheap test 86400 second, 86400*5=432000 for weekly-check		
 		folder_ts = datetime.datetime.fromtimestamp(folder_creation_time).strftime('%Y-%m-%d %H:%M:%S')
 		folder_prefix = folder_path.split('_')[0] #prefix is used as key in servers_info dict initialized at the beginning of the script 
 		server_ip, server_name = servers_info[folder_prefix][0], servers_info[folder_prefix][1]

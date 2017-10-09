@@ -17,13 +17,13 @@ class send_email:
 		mail.starttls()
 		mail.login(sender, pw)
 		mail.sendmail(sender, 'boyang.dong@budoholdings.com', content)
-		mail.sendmail(sender, 'becky.ali@budoholdings.com', content)
+		#mail.sendmail(sender, 'becky.ali@budoholdings.com', content)
 		#mail.sendmail('test.budo@gmail.com', 'mark.cukier@budoholdings.com', content)
 		print "Email Sent!"
 		mail.close()
 
 class record_in_db:
-	def __init__(self, server_name, server_ip, log_name, time_stamp, error_type="EMPTY_FILE", host="10.60.3.63", user="bdong", passwd="bdong", db="budofiles"):
+	def __init__(self, server_name, server_ip, log_name, time_stamp, error_type="EMPTY_FILE", host="172.30.80.25", user="root", passwd="Password1", db="budo_firm"):
 		self.server_name = server_name
 		self.server_ip = server_ip
 		self.log_name = log_name
@@ -31,7 +31,7 @@ class record_in_db:
 		db = MySQLdb.connect(host=host, port=3306, user=user, passwd=passwd, db=db)
 		cur = db.cursor()
 		try:
-			cur.execute("""INSERT INTO error_log_info VALUES (%s,%s,%s,%s,%s)""",(server_name, server_ip, log_name, time_stamp,"EMPTY FILE")) #time stamp format: '2017-04-21 13:59:45'
+			cur.execute("""INSERT INTO empty_log_info VALUES (%s,%s,%s,%s,%s)""",(server_name, server_ip, log_name, time_stamp,"EMPTY FILE")) #time stamp format: '2017-04-21 13:59:45'
 			db.commit()
 		except Exception, e:
 			db.rollback()
