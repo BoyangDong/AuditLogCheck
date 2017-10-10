@@ -20,22 +20,14 @@ servers_with_empty_logs = {}
 
 file_path_root = r'%s' % 'instance1/audit_logs/'
 local_path_root = r'%s' %'e:/Repos/Project_1/test_logs/OptionsCity/'
-edfman_path_dir = r'%s' % (''.join(['/weekly_test/', current_date, '/']))
+edfman_path_dir = r'%s' % (''.join(['/weekly_test/', current_date, '_', 'OC', '/'])) #add postfix _OC to differentiate log from TT servers  
 
 servers_info = {
-# ---- New Server IP Address ---- 
-#	"BudoTrading"			: ['10.133.32.75', 'BUDO-DC3-OC-1', 'Todd Moore, Niel Hunt'	],
-#	"Budo-JerryAttlan"		: ['10.133.32.76', 'BUDO-DC3-OC-2', 'Jerry Attlan'			],
-#	"Budo-LennyZaban"		: ['10.133.32.77', 'BUDO-DC3-OC-4', 'Jeff**, Lenny, Erin'	],
-#	"Budo-LennyZabanQuoter"	: ['10.133.32.77', 'BUDO-DC3-OC-4', 'Jeff, Lenny(Quoter)'	],
-#	"Budo-MichaelHandwerker": ['10.133.32.78', 'BUDO-DC3-OC-5', 'Michael Handwerker'	]
-# ---- Old Server IP Address ---- 
-	"BudoTrading"			: ['10.64.0.8'	, 'BUDO-DC3-OC-1', 'Todd Jones, Niel Hunt'	],
-	"BudoTrading-Kiran"		: ['10.64.0.131', 'BUDO-DC3-OC-2', 'Kiran Khambhampati'		],
-	"Budo-JerryAttlan"		: ['10.64.0.131', 'BUDO-DC3-OC-2', 'Jerry Attlan'			],
-	"Budo-LennyZaban"		: ['10.64.0.139', 'BUDO-DC3-OC-4', 'Jeff**, Lenny, Erin'	],
-	"Budo-LennyZabanQuoter"	: ['10.64.0.139', 'BUDO-DC3-OC-4', 'Jeff, Lenny(Quoter)'	],
-	"Budo-MichaelHandwerker": ['10.64.0.2'	, 'BUDO-DC3-OC-5', 'Michael Handwerker'		]
+	"BudoTrading"			: ['10.133.32.75', 'BUDO-DC3-OC-1', 'Todd Moore, Niel Hunt'	],
+	"Budo-JerryAttlan"		: ['10.133.32.76', 'BUDO-DC3-OC-2', 'Jerry Attlan'			],
+	"Budo-LennyZaban"		: ['10.133.32.77', 'BUDO-DC3-OC-4', 'Jeff**, Lenny, Erin'	],
+	"Budo-LennyZabanQuoter"	: ['10.133.32.77', 'BUDO-DC3-OC-4', 'Jeff, Lenny(Quoter)'	],
+	"Budo-MichaelHandwerker": ['10.133.32.78', 'BUDO-DC3-OC-5', 'Michael Handwerker'	]
 }
 
 # Open a transport
@@ -93,7 +85,7 @@ transport.close()
 
 # Send email with Report 
 if 0 == len(servers_with_empty_logs):  
-	send_email(content = ("No empty log files is found from OptionsCity servers on %s." % date_today))
+	send_email(content = ("No empty log files is found from OptionsCity servers during the week of  %s." % date_today))
 else: 		
 	email_toks.extend(["Audit Log Checker Report: ",date_today, "\n"])
 	for k, v in servers_with_empty_logs.iteritems():    

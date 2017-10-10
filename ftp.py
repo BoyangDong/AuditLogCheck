@@ -113,10 +113,10 @@ def upload_files(zipped_folder):
 		
 
 def record_in_db(obj, log_name, file_path, folder_ts):
-	db = MySQLdb.connect(host="localhost", user="bdong", passwd="bdong", db="log_report")
+	db = MySQLdb.connect(host="172.30.80.25", user="root", passwd="Password1!", db="budo_firm")
 	cur = db.cursor()
 	try:
-		cur.execute("""INSERT INTO error_log_info VALUES (%s,%s,%s,%s,%s)""",(obj.server_name, obj.ip, log_name, folder_ts,"EMPTY FILE")) #time stamp format: '2017-04-21 13:59:45'
+		cur.execute("""INSERT INTO empty_log_info VALUES (%s,%s,%s,%s,%s)""",(obj.server_name, obj.ip, log_name, folder_ts,"EMPTY FILE")) #time stamp format: '2017-04-21 13:59:45'
 												 			                 #server,          ip,     file_name,time_stamp,error_type
 		'''print get_file_creation_time(file_path)'''#!!!
 		db.commit()

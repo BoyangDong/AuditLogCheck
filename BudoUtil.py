@@ -23,7 +23,7 @@ class send_email:
 		mail.close()
 
 class record_in_db:
-	def __init__(self, server_name, server_ip, log_name, time_stamp, error_type="EMPTY_FILE", host="172.30.80.25", user="root", passwd="Password1", db="budo_firm"):
+	def __init__(self, server_name, server_ip, log_name, time_stamp, error_type="EMPTY_FILE", host="172.30.80.25", user="root", passwd="Password1!", db="budo_firm"):
 		self.server_name = server_name
 		self.server_ip = server_ip
 		self.log_name = log_name
